@@ -5,10 +5,12 @@ Auteurs : Gabriel C. Ullmann, Fabio Petrillo, 2025
 """
 
 from daos.user_dao import UserDAO
+from daos.user_dao_mongo import UserDAOMongo
 
 class UserController:
     def __init__(self):
-        self.dao = UserDAO()
+        self.dao = UserDAO() 
+        # self.dao = UserDAOMongo() 
 
     def list_users(self):
         """ List all users """
@@ -17,6 +19,9 @@ class UserController:
     def create_user(self, user):
         """ Create a new user based on user inputs """
         self.dao.insert(user)
+
+    def delete_user(self, user_id):
+        self.dao.delete(user_id)
 
     def shutdown(self):
         """ Close database connection """

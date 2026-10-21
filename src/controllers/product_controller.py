@@ -13,6 +13,9 @@ class ProductController:
         """ Create a new product """
         self.dao.insert(product)
 
+    def delete_product(self, product_id):
+        self.dao.delete(product_id)
+
     def shutdown(self):
         """ Close database connection """
         self.dao.close()

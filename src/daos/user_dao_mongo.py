@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 from models.user import User
 
 class UserDAOMongo:
@@ -64,4 +65,8 @@ class UserDAOMongo:
 
     def delete(self, user_id):
         """ Delete user from MongoDB with given user ID """
-        self.collection.delete_one({"_id": user_id})        
+        self.collection.delete_one({"_id": ObjectId(user_id)})   
+
+    def close(self):
+        self.client.close()
+

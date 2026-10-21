@@ -8,22 +8,22 @@ class ProductView:
         controller = ProductController()
 
         while True:
-            print("\n1. Montrer la liste des produits\n2. Ajouter un produit\n3. Quitter")
+            print("\n1. Montrer la liste des produits\n2. Ajouter un produit\n3. Supprimer un produit\n4. Quitter")
             choice = input("Choisissez une option: ")
 
             if choice == '1':
                 products = controller.list_products()
                 ProductView.show_products(products)
-
             elif choice == '2':
                 name, brand, price = ProductView.get_inputs()
                 product = Product(None, name, brand, price)
                 controller.create_product(product)
-
             elif choice == '3':
+                product_id = int(input("ID du produit à supprimer : "))
+                controller.delete_product(product_id)
+            elif choice == '4':
                 controller.shutdown()
                 break
-
             else:
                 print("Cette option n'existe pas.")
 
